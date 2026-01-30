@@ -1,0 +1,36 @@
+# Example config skeleton for training on preprocessed nuPlan -> npz folder
+seed: 42
+device: auto
+num_workers: 4
+
+data:
+  name: npz
+  folder: data/nuplan_npz/train
+  batch_size: 32
+  epochs: 20
+
+model:
+  d_model: 256
+  nhead: 8
+  num_layers: 4
+  num_modes: 8
+  dropout: 0.1
+  use_refine: true
+
+augment:
+  ego_perturb_prob: 0.5
+  ego_perturb_sigma_xy: 0.3
+  ego_perturb_sigma_yaw: 0.1
+  state_dropout_prob: 0.3
+
+optim:
+  lr: 0.0002
+  weight_decay: 0.01
+  grad_clip: 1.0
+
+loss:
+  lambda_aux: 0.2
+  eps_road: 0.2
+  eps_obstacle: 0.2
+  eps_L: 0.3
+  eps_W: 0.2
